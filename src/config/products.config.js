@@ -7,7 +7,7 @@ export const products = [
     sizes: ["L/XL"],
     panels: [2, 5, 6],
     searchTerms: [
-      "Found Feather 2 panel cap black",
+      "Found Feather classic cap",
       "Found Feather 5 panel cap black",
       "Found Feather 6 panel cap black",
     ],
