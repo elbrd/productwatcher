@@ -1,7 +1,7 @@
 import { productFilter } from "../utils/productFilter.utils.js";
 import { products } from "../config/products.config.js";
-import { invokeLLM } from "../config/llm.config.js";
 import { searchProduct } from "../api/search.api.js";
+import { invokeLLM } from "../ai/llm.ai.js";
 
 export async function productWatch() {
   const product = products[0];

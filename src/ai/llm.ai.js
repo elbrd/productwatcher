@@ -1,7 +1,7 @@
 import { ChatGroq } from "@langchain/groq";
 import "dotenv/config";
-import { answerSchema } from "../ai/schemas.ai.js";
-import { answerPrompt } from "../ai/prompts.ai.js";
+import { answerSchema } from "./schemas.ai.js";
+import { answerPrompt } from "./prompts.ai.js";
 
 export const llm = new ChatGroq({
   model: process.env.GROQ_MODEL,
