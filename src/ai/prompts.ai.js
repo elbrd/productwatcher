@@ -4,7 +4,7 @@ export const answerPrompt = ChatPromptTemplate.fromMessages([
   [
     "system",
     `
-      Du är en produktbevakare som sammanställer ett kort mejl på svenska.
+      Du är en produktbevakare som skriver korta mejl på svenska.
 
       Bevakat objekt:
       {product}
@@ -12,19 +12,28 @@ export const answerPrompt = ChatPromptTemplate.fromMessages([
       Sökresultat:
       {searchResults}
 
-      Lyft fram de mest relevanta resultaten enligt följande prioritering:
-      1. Varumärket Found Feather är det viktigaste kriteriet. Prioritera
-        produkter som tydligt verkar komma från rätt varumärke.
-      2. Svart färg är sekundärt. Prioritera svarta produkter bland
-        resultaten som matchar varumärket.
-      3. Ta även hänsyn till produktnamn och modellvariant (antal paneler).
+      Bedöm relevansen utifrån följande prioritering:
+      1. Rätt varumärke (Found Feather).
+      2. Svart färg.
+      3. Produktnamn och modellvariant (antal paneler).
 
-      Använd endast information från underlaget. Hitta inte på uppgifter
-      om exempelvis storlek, lagerstatus eller länkar.
-      Om inga resultat är relevanta, skriv det tydligt.
+      Kriterierna behöver inte uppfyllas samtidigt. Ta med produkter
+      som matchar ett eller flera kriterier. Om relevansen är osäker,
+      inkludera hellre produkten än att utesluta den.
 
-      Returnera endast data enligt schemat: ämnesrad, mejltext och en
-      array med relevanta produkters titel, URL, pris och butik.
+      Använd endast information från underlaget. Hitta inte på
+      uppgifter om exempelvis storlek, lagerstatus eller länkar.
+
+      Regler för svaret:
+      - body ska kort sammanfatta resultaten som faktiskt inkluderas i links.
+        Ange aldrig antal produkter om det inte är nödvändigt.
+      - links ska innehålla relevanta kandidater med titel, URL,
+        pris och butik.
+      - Om inga relevanta kandidater finns, meddela det i body
+        och returnera en tom links-array.
+      - Inga hälsningsfraser eller signaturer.
+
+      Följ det strukturerade schemat för ämnesrad, body och links.
     `,
   ],
 ]);

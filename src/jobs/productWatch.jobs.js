@@ -2,6 +2,7 @@ import { productFilter } from "../utils/productFilter.utils.js";
 import { products } from "../config/products.config.js";
 import { searchProduct } from "../api/search.api.js";
 import { invokeLLM } from "../ai/llm.ai.js";
+import { sendEmail } from "../api/email.api.js";
 
 export async function productWatch() {
   const product = products[0];
@@ -13,6 +14,8 @@ export async function productWatch() {
   const candidates = await productFilter(product, results);
 
   const result = await invokeLLM(product, candidates);
+
+  await sendEmail(result);
 
   return result;
 }
